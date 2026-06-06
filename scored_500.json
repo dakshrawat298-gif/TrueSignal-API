@@ -1,0 +1,97 @@
+[
+    {
+        "candidate_id": "CAND_0039754",
+        "score": 100,
+        "reasoning": "The advocate highlights Mira's substantial impact on production ML systems and leadership in complex search and ranking initiatives, citing specific metrics and ownership. The interrogator questions the discrepancy in total versus relevant experience, along with slower recruiter response times and a moderate offer acceptance rate. The debate centers on verifying the depth of broader experience and the potential implications of observed engagement patterns on hiring efficiency."
+    },
+    {
+        "candidate_id": "CAND_0020877",
+        "score": 100,
+        "reasoning": "The advocate emphasized the candidate's strong production achievements in ML, showcasing tangible results from RAG and semantic search implementations. The interrogator highlighted critical data inconsistencies, specifically regarding overlapping educational timelines and miscalculated job and skill durations. These discrepancies introduce significant ambiguity concerning the candidate's verifiable experience and background, necessitating a thorough re-evaluation of the profile data."
+    },
+    {
+        "candidate_id": "CAND_0033861",
+        "score": 100,
+        "reasoning": "The advocate highlighted Kabir's proven ability to build and optimize large-scale ML systems, underscored by tangible results in cost reduction and performance improvements. The interrogator identified critical data inconsistencies, specifically in educational timelines and current role duration, alongside a contradiction regarding open-to-work status. The debate balanced strong technical delivery against significant profile data anomalies, necessitating a closer examination of foundational information before proceeding."
+    },
+    {
+        "candidate_id": "CAND_0030953",
+        "score": 100,
+        "reasoning": "The debate centered on a candidate with demonstrable technical depth and measurable impact, contrasted sharply by critical data inconsistencies. Specifically, identical job descriptions across different companies and miscalculated tenure durations undermined the profile's structural integrity. The chronological timeline of education versus professional experience also presented a significant area of inquiry."
+    },
+    {
+        "candidate_id": "CAND_0044855",
+        "score": 100,
+        "reasoning": "The advocate highlights a strong track record of deploying complex, high-impact ML systems with clear, quantified results across various domains. The interrogator, however, brings forth critical structural inconsistencies, particularly a 12-year gap between education and career, alongside a contradictory 'open to work' flag. These discrepancies necessitate further clarification to fully validate the candidate's reported journey and availability."
+    },
+    {
+        "candidate_id": "CAND_0055992",
+        "score": 100,
+        "reasoning": "The debate centered on the candidate's proven ability to deliver complex ML systems against structural inconsistencies in their profile data. Advocate claims highlighted a robust track record of measurable business impact and deep technical expertise in modern AI/ML. Interrogator challenges underscored significant discrepancies in years of experience and educational timelines, alongside a lower-than-expected skill assessment for a claimed expert proficiency."
+    },
+    {
+        "candidate_id": "CAND_0075249",
+        "score": 100,
+        "reasoning": "The advocate highlights extensive experience in applied ML, demonstrated by successful migrations and measurable improvements in retention and search relevance across large user bases. The interrogator, however, points out critical structural inconsistencies, including overlapping academic timelines and a notable discrepancy between claimed total experience and detailed career history. These data anomalies introduce ambiguity regarding the candidate's true background and practical application depth, despite robust technical achievements."
+    },
+    {
+        "candidate_id": "CAND_0079387",
+        "score": 100,
+        "reasoning": "The advocate presented strong evidence of the candidate's hands-on experience in shipping impactful ML features and operating across the full MLOps lifecycle. The interrogator countered with critical observations regarding the candidate's self-assessment accuracy, highlighting implausible durations for specialized skill proficiencies. Further scrutiny revealed a potentially concerning discrepancy between the claimed expert Python proficiency and a moderate assessment score."
+    },
+    {
+        "candidate_id": "CAND_0041669",
+        "score": 100,
+        "reasoning": "The debate confirmed Aisha's significant operational impact and strong technical ownership in advanced ML applications. Claims highlighted the consistent delivery of measurable business value through complex system development and evaluation. Challenges focused on clarifying the scope of her contributions in foundational research versus application and exploring domain diversity beyond her core expertise."
+    },
+    {
+        "candidate_id": "CAND_0054123",
+        "score": 100,
+        "reasoning": "The advocate highlighted strong technical achievements and operational maturity in shipping complex ML systems with significant impact. The interrogator challenged glaring chronological discrepancies in education dates and an implausible duration of expertise for core skills relative to total experience. These inconsistencies are critical for re-evaluating the candidate's actual timeline and skill acquisition depth."
+    },
+    {
+        "candidate_id": "CAND_0044222",
+        "score": 100,
+        "reasoning": "The advocate presented strong evidence of technical leadership and quantifiable impact through a successful embedding-based retrieval migration. The interrogator questioned the consistency of certain skill durations and the depth of some listed proficiencies. Overall, the candidate demonstrates robust experience in deploying and evaluating ML systems, aligning with senior individual contributor expectations."
+    },
+    {
+        "candidate_id": "CAND_0018499",
+        "score": 100,
+        "reasoning": "The advocate highlighted the candidate's impressive track record in designing and deploying high-impact AI/ML systems, emphasizing technical depth in search, ranking, and optimization. However, the interrogator identified critical discrepancies in job descriptions and titles, alongside a pattern of shorter tenures, demanding further clarification on career trajectory and data veracity. The core conflict revolves around reconciling the candidate's evident technical prowess with significant structural ambiguities and potential inconsistencies in their career presentation."
+    },
+    {
+        "candidate_id": "CAND_0007009",
+        "score": 100,
+        "reasoning": "The candidate's profile showcases exceptional practical skills in applied machine learning, notably in RAG implementation and rigorous evaluation framework design, leading to significant quantifiable impact. However, the identical job descriptions for two distinct companies (Wysa and PolicyBazaar) are a severe data integrity issue that overshadows specific achievements and raises serious concerns about accuracy. This structural flaw mandates verification of actual contributions while acknowledging the strong technical foundation suggested by the Netflix experience and diverse skill set."
+    },
+    {
+        "candidate_id": "CAND_0077337",
+        "score": 100,
+        "reasoning": "The debate centered on Aarav Agarwal's strong technical leadership and pragmatic, impact-driven approach to ML system development, highlighted by quantifiable achievements in search, retrieval, and recommendation systems. Interrogator challenges surfaced concerns regarding a significant job description duplication for two different past roles and the interpretation of tenure at current and past senior-level positions. Ultimately, the candidate presents as a highly competent and operational ML engineer, despite minor profile inconsistencies that warrant clarification."
+    },
+    {
+        "candidate_id": "CAND_0081846",
+        "score": 100,
+        "reasoning": "Arjun demonstrates exceptional engineering leadership and a proven track record of designing and deploying high-impact, scalable AI systems, evidenced by substantial NDCG@10 improvements and processing millions of queries monthly. Expertise spans critical areas like hybrid retrieval, learning-to-rank, and robust evaluation frameworks, showing strong cognitive synthesis and operational capability. However, the significant data inconsistency regarding the current role's duration versus its start date requires immediate verification, and the relatively low GitHub activity and high average response time warrant further inquiry."
+    },
+    {
+        "candidate_id": "CAND_0046064",
+        "score": 100,
+        "reasoning": "The advocate emphasized the candidate's consistent delivery of measurable improvements and comprehensive mastery of the ML lifecycle, from research to deployment. The interrogator raised critical concerns regarding the chronological consistency of educational dates and the scope of explicit leadership responsibilities. A consensus was reached on the candidate's profound technical skill in advanced retrieval and ranking systems, despite the need for clarification on specific profile anomalies."
+    },
+    {
+        "candidate_id": "CAND_0096172",
+        "score": 100,
+        "reasoning": "The advocate presented compelling evidence of Meera's impactful ML deployments and her leadership aptitude in technical roles. The interrogator raised concerns regarding her expressed job search status and location constraints. Despite minor discrepancies, her demonstrated operational excellence and cognitive depth reinforce her strong standing in applied machine learning."
+    },
+    {
+        "candidate_id": "CAND_0091534",
+        "score": 100,
+        "reasoning": "The advocate highlighted Dhruv Dutta's consistent delivery of significant business impact through advanced ML solutions and comprehensive expertise across the ML stack. The interrogator challenged glaring inconsistencies regarding reported years of experience and stated open-to-work status, alongside a notably low offer acceptance rate. These discrepancies suggest a need for a deeper dive into the candidate's self-representation and career trajectory to reconcile narrative with factual data."
+    },
+    {
+        "candidate_id": "CAND_0057563",
+        "score": 50,
+        "reasoning": "Gemini System Error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 13.674755718s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '13s'}]}}"
+    }
+]

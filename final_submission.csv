@@ -1,0 +1,11 @@
+Rank,Candidate Name,Target Role,Final Score,Tags,Global Translation,Decision Ledger
+1,Candidate_1,DeFi Architect,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+2,Candidate_2,Senior Web3 Developer,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+3,Candidate_3,DeFi Architect,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+4,Candidate_4,DeFi Architect,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+5,Candidate_5,Smart Contract Auditor,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+6,Candidate_6,Senior Web3 Developer,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+7,Candidate_7,DeFi Architect,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+8,Candidate_8,Smart Contract Auditor,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+9,Candidate_9,DeFi Architect,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
+10,Candidate_10,DeFi Architect,50,[],ERROR,AWS System Error: An error occurred (ValidationException) when calling the InvokeModel operation: Operation not allowed
