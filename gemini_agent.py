@@ -61,10 +61,12 @@ async def run_truesignal_evaluation(candidate_data: dict) -> dict:
         "experience against graduation years and role durations. Instantly flag and heavily penalize "
         "temporal impossibilities or chronological logic flaws (e.g., Honeypot resumes with 8 years of "
         "experience at a 3-year-old company).\n"
+        "If you detect chronological impossibilities or honeypot logic flaws, you MUST include "
+        "TAG_HONEYPOT_DETECTED in the tags array.\n"
         "You MUST output ONLY a valid JSON object matching this exact schema:\n"
         "{\n"
         '  "internal_debate": {"advocate_claims": [], "interrogator_challenges": []},\n'
-        '  "tags": ["ONLY select from: TAG_COGNITIVE_SYNTHESIS, TAG_OPERATIONAL_HUSTLE, TAG_SYNTACTIC_DISSOCIATION, TAG_AMBIGUITY_NAVIGATION, TAG_LOCAL_SCALABILITY"],\n'
+        '  "tags": ["ONLY select from: TAG_COGNITIVE_SYNTHESIS, TAG_OPERATIONAL_HUSTLE, TAG_SYNTACTIC_DISSOCIATION, TAG_AMBIGUITY_NAVIGATION, TAG_LOCAL_SCALABILITY, TAG_HONEYPOT_DETECTED"],\n'
         '  "global_equivalency_translation": "1-sentence translation to a global metric.",\n'
         '  "ledger": "Strict 3-sentence audit log of the debate."\n'
         "}"
