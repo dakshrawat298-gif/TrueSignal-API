@@ -4,21 +4,15 @@ import os
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, ValidationError
+from pydantic import ValidationError
 import uvicorn
 
 from sanitization import process_and_sanitize_payload
 from scoring_engine import calculate_final_score
-from gemini_agent import run_truesignal_evaluation
+from gemini_agent import run_truesignal_evaluation, OutboundValidationSchema
 
 LEADERBOARD_CSV = "team_submission.csv"
 STATIC_DIR = "static"
-
-
-class OutboundValidationSchema(BaseModel):
-    tags: list[str]
-    global_equivalency_translation: str
-    ledger: str
 
 
 app = FastAPI()

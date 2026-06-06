@@ -1,4 +1,3 @@
-import re
 from pydantic import BaseModel
 
 class RawCandidateData(BaseModel):
@@ -6,23 +5,24 @@ class RawCandidateData(BaseModel):
     target_role: str
     unstructured_activity: str
 
-# FIX: Removed (?i) from the strings
-malicious_patterns = [
-    r"ignore previous instructions",
-    r"system prompt",
-    r"bypass",
-    r"jailbreak"
-]
-
-# FIX: Passed re.IGNORECASE directly to the compiler
-pattern = re.compile(r'(?:' + '|'.join(malicious_patterns) + r')', re.IGNORECASE)
-
 def sanitize_against_prompt_injection(text: str) -> str:
+    """Securely sandbox untrusted candidate input via XML containment.
+
+    We do NOT censor or rewrite the candidate's actual content (a primitive
+    word-blocking regex destroyed legitimate technical resumes). Instead we:
+      1. Strip control/non-printable characters (keeping tabs and newlines).
+      2. Neutralize angle brackets so the input cannot break out of its tag.
+      3. Wrap the result inside <untrusted_activity> tags, which the agent is
+         instructed to treat strictly as inert data.
+    """
     if not text:
         text = ""
 
+    # Clean up weird/non-printable characters while preserving real formatting.
+    text = "".join(ch for ch in text if ch in ("\n", "\t") or ord(ch) >= 32)
+
+    # XML sandboxing: escape angle brackets so the payload stays inside the tag.
     text = text.replace("<", "&lt;").replace(">", "&gt;")
-    text = pattern.sub("[REDACTED_MALICIOUS_INTENT]", text)
 
     return f"<untrusted_activity>\n{text}\n</untrusted_activity>"
 
