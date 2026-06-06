@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrueSignal — Candidate Leaderboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="grid-overlay"></div>
+    <div class="noise"></div>
+  </div>
+
+  <main class="shell">
+    <header class="masthead">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="pulse"></span>
+        </span>
+        <div class="brand-text">
+          <span class="brand-name">TrueSignal</span>
+          <span class="brand-sub">Adversarial HR Intelligence</span>
+        </div>
+      </div>
+      <div class="masthead-meta">
+        <div class="meta-stat">
+          <span class="meta-value" id="stat-count">—</span>
+          <span class="meta-label">Candidates</span>
+        </div>
+        <div class="meta-divider" aria-hidden="true"></div>
+        <div class="meta-stat">
+          <span class="meta-value" id="stat-top">—</span>
+          <span class="meta-label">Top Signal</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1 class="hero-title">Signal<span class="accent"> Above </span>Noise</h1>
+      <p class="hero-sub">Every candidate ranked by an adversarial multi-agent engine. Highest signal rises first.</p>
+    </section>
+
+    <section id="podium" class="podium" aria-label="Top ranked candidates"></section>
+
+    <section class="board" aria-label="Full leaderboard">
+      <div class="board-head">
+        <span class="col col-rank">Rank</span>
+        <span class="col col-id">Candidate</span>
+        <span class="col col-score">Score</span>
+        <span class="col col-reason">Signal Ledger</span>
+      </div>
+      <div id="rows" class="rows"></div>
+    </section>
+
+    <div id="status" class="status"></div>
+
+    <footer class="footer">
+      <span>TrueSignal Engine</span>
+      <span class="dot" aria-hidden="true">•</span>
+      <span>Live from <code>team_submission.csv</code></span>
+    </footer>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
