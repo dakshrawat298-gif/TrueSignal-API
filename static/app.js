@@ -1,5 +1,7 @@
 const fmtId = (id) => (id ? escapeHtml(id) : "—");
 
+const overlay = () => document.getElementById("overlay");
+
 async function loadLeaderboard() {
   const rows = document.getElementById("rows");
   const podium = document.getElementById("podium");
@@ -19,23 +21,42 @@ async function loadLeaderboard() {
   } catch (err) {
     rows.innerHTML = "";
     podium.innerHTML = "";
-    status.innerHTML = `<div class="empty-state"><div class="big">Signal lost</div>Could not reach the leaderboard service. <br/>${err.message}</div>`;
+    status.innerHTML = `<div class="empty-state"><div class="big">Signal lost</div>Could not reach the leaderboard service. <br/>${escapeHtml(
+      err.message
+    )}</div>`;
     return;
   }
 
+  render(data, {
+    emptyTitle: "No signals yet",
+    emptyBody:
+      "The leaderboard is empty. Run the scoring batch to populate <code>team_submission.csv</code>.",
+  });
+}
+
+function render(data, opts = {}) {
+  const rows = document.getElementById("rows");
+  const podium = document.getElementById("podium");
+  const status = document.getElementById("status");
   const candidates = data.candidates || [];
 
   // Stats
-  document.getElementById("stat-count").textContent = data.count ?? candidates.length;
-  document.getElementById("stat-top").textContent = candidates.length ? candidates[0].score : "—";
+  document.getElementById("stat-count").textContent =
+    data.count ?? candidates.length;
+  document.getElementById("stat-top").textContent = candidates.length
+    ? candidates[0].score
+    : "—";
 
   if (!candidates.length) {
     rows.innerHTML = "";
     podium.innerHTML = "";
-    status.innerHTML = `<div class="empty-state"><div class="big">No signals yet</div>The leaderboard is empty. Run the scoring batch to populate <code>team_submission.csv</code>.</div>`;
+    status.innerHTML = `<div class="empty-state"><div class="big">${
+      opts.emptyTitle || "No signals yet"
+    }</div>${opts.emptyBody || ""}</div>`;
     return;
   }
 
+  status.innerHTML = "";
   renderPodium(podium, candidates.slice(0, 3));
   renderRows(rows, candidates);
 }
@@ -45,7 +66,8 @@ function renderPodium(container, top) {
   const order = [top[1], top[0], top[2]].filter(Boolean);
   container.innerHTML = order
     .map((c) => {
-      const label = c.rank === 1 ? "Top Signal" : c.rank === 2 ? "Runner-up" : "Third";
+      const label =
+        c.rank === 1 ? "Top Signal" : c.rank === 2 ? "Runner-up" : "Third";
       return `
       <article class="podium-card rank-${c.rank}">
         <div class="medal">${c.rank}</div>
@@ -92,6 +114,114 @@ function renderRows(container, candidates) {
   });
 }
 
+/* ---------- Sandbox upload ---------- */
+
+function showOverlay(show) {
+  const el = overlay();
+  if (show) el.removeAttribute("hidden");
+  else el.setAttribute("hidden", "");
+}
+
+function showBanner(count) {
+  const banner = document.getElementById("sandbox-banner");
+  document.getElementById("sb-count").textContent = count;
+  banner.removeAttribute("hidden");
+}
+
+function hideBanner() {
+  document.getElementById("sandbox-banner").setAttribute("hidden", "");
+}
+
+async function uploadSandbox(file) {
+  if (!file) return;
+  const status = document.getElementById("status");
+  showOverlay(true);
+
+  const form = new FormData();
+  form.append("file", file);
+
+  let data;
+  try {
+    const res = await fetch("/api/sandbox_upload", {
+      method: "POST",
+      body: form,
+    });
+    if (!res.ok) {
+      let detail = `HTTP ${res.status}`;
+      try {
+        const body = await res.json();
+        if (body.detail) detail = body.detail;
+      } catch (_) {}
+      throw new Error(detail);
+    }
+    data = await res.json();
+  } catch (err) {
+    showOverlay(false);
+    status.innerHTML = `<div class="empty-state"><div class="big">Upload failed</div>${escapeHtml(
+      err.message
+    )}</div>`;
+    return;
+  }
+
+  showOverlay(false);
+  showBanner(data.count ?? (data.candidates || []).length);
+  render(data, {
+    emptyTitle: "No candidates scored",
+    emptyBody: "The uploaded file had no valid candidate records.",
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function initSandbox() {
+  const dropzone = document.getElementById("dropzone");
+  const input = document.getElementById("file-input");
+  const uploadBtn = document.getElementById("upload-btn");
+  const backBtn = document.getElementById("back-to-live");
+
+  const pick = () => input.click();
+
+  uploadBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    pick();
+  });
+  dropzone.addEventListener("click", pick);
+  dropzone.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      pick();
+    }
+  });
+
+  input.addEventListener("change", () => {
+    if (input.files && input.files[0]) {
+      uploadSandbox(input.files[0]);
+      input.value = ""; // allow re-uploading the same file
+    }
+  });
+
+  ["dragenter", "dragover"].forEach((evt) =>
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.add("dragover");
+    })
+  );
+  ["dragleave", "drop"].forEach((evt) =>
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      dropzone.classList.remove("dragover");
+    })
+  );
+  dropzone.addEventListener("drop", (e) => {
+    const file = e.dataTransfer?.files?.[0];
+    if (file) uploadSandbox(file);
+  });
+
+  backBtn.addEventListener("click", () => {
+    hideBanner();
+    loadLeaderboard();
+  });
+}
+
 function truncate(str, n) {
   if (!str) return "";
   return str.length > n ? str.slice(0, n).trimEnd() + "…" : str;
@@ -105,4 +235,5 @@ function escapeHtml(str) {
     .replace(/>/g, "&gt;");
 }
 
+initSandbox();
 loadLeaderboard();

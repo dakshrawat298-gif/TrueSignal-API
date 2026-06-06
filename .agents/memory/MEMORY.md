@@ -1,0 +1,1 @@
+- [HTML hidden attr vs display CSS](css-hidden-attribute.md) — any author `display:` rule beats the `hidden` attribute; add an explicit `[hidden]{display:none}` guard.

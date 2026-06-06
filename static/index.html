@@ -47,6 +47,32 @@
       <p class="hero-sub">Every candidate ranked by an adversarial multi-agent engine. Highest signal rises first.</p>
     </section>
 
+    <section class="sandbox" aria-label="Live candidate sandbox">
+      <div id="dropzone" class="dropzone" tabindex="0" role="button"
+           aria-label="Upload a .jsonl sample of candidates">
+        <div class="dz-glow" aria-hidden="true"></div>
+        <div class="dz-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 16V4" />
+            <path d="m6 10 6-6 6 6" />
+            <path d="M4 20h16" />
+          </svg>
+        </div>
+        <div class="dz-text">
+          <span class="dz-title">Drop a <code>.jsonl</code> sample to score live</span>
+          <span class="dz-sub">Adversarial engine ranks the first few candidates in real time</span>
+        </div>
+        <button id="upload-btn" class="btn-upload" type="button">Upload Sample (.jsonl)</button>
+        <input id="file-input" type="file" accept=".jsonl,.json,.txt" hidden />
+      </div>
+      <div id="sandbox-banner" class="sandbox-banner" hidden>
+        <span class="sb-dot" aria-hidden="true"></span>
+        <span class="sb-text">Showing <strong id="sb-count">0</strong> freshly scored sandbox candidates</span>
+        <button id="back-to-live" class="sb-back" type="button">Back to live leaderboard</button>
+      </div>
+    </section>
+
     <section id="podium" class="podium" aria-label="Top ranked candidates"></section>
 
     <section class="board" aria-label="Full leaderboard">
@@ -67,6 +93,16 @@
       <span>Live from <code>team_submission.csv</code></span>
     </footer>
   </main>
+
+  <div id="overlay" class="overlay" hidden aria-live="polite">
+    <div class="overlay-card">
+      <div class="spinner" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="overlay-title">AI Engine Processing…</div>
+      <div class="overlay-sub">Advocate vs Interrogator are debating your candidates</div>
+    </div>
+  </div>
 
   <script src="/static/app.js"></script>
 </body>
