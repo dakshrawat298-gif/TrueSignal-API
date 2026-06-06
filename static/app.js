@@ -132,9 +132,36 @@ function hideBanner() {
   document.getElementById("sandbox-banner").setAttribute("hidden", "");
 }
 
+const MAX_UPLOAD_BYTES = 2 * 1024 * 1024;
+const TOO_LARGE_MESSAGE = "File too large. Please upload a sample file under 2MB.";
+
+function showDropError(message) {
+  const dz = document.getElementById("dropzone");
+  const title = dz && dz.querySelector(".dz-title");
+  if (title) title.textContent = message;
+  if (dz) dz.classList.add("dz-error");
+}
+
+function clearDropError() {
+  const dz = document.getElementById("dropzone");
+  const title = dz && dz.querySelector(".dz-title");
+  if (title) title.innerHTML = 'Drop a <code>.jsonl</code> sample to score live';
+  if (dz) dz.classList.remove("dz-error");
+}
+
 async function uploadSandbox(file) {
   if (!file) return;
   const status = document.getElementById("status");
+  clearDropError();
+
+  // Client-side guard: reject oversized files instantly, never start the
+  // overlay, so the UI can't hang waiting on a doomed upload.
+  if (file.size > MAX_UPLOAD_BYTES) {
+    showOverlay(false);
+    showDropError(TOO_LARGE_MESSAGE);
+    return;
+  }
+
   showOverlay(true);
 
   const form = new FormData();
@@ -152,6 +179,12 @@ async function uploadSandbox(file) {
         const body = await res.json();
         if (body.detail) detail = body.detail;
       } catch (_) {}
+      // Server-side size rejection (413): surface it on the drop-zone and bail.
+      if (res.status === 413) {
+        showOverlay(false);
+        showDropError(detail || TOO_LARGE_MESSAGE);
+        return;
+      }
       throw new Error(detail);
     }
     data = await res.json();

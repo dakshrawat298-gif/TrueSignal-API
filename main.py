@@ -19,6 +19,10 @@ STATIC_DIR = "static"
 # Cap sandbox uploads so judges get a fast demo without hitting rate limits.
 SANDBOX_MAX_CANDIDATES = 8
 
+# Hard ceiling on sandbox upload size (2MB) to protect server memory.
+SANDBOX_MAX_UPLOAD_BYTES = 2 * 1024 * 1024
+SANDBOX_TOO_LARGE_MESSAGE = "File too large. Please upload a sample file under 2MB."
+
 
 app = FastAPI()
 
@@ -139,7 +143,20 @@ async def sandbox_upload(file: UploadFile = File(...)):
     Gemini pipeline, and return them ranked highest-first.
 
     This is independent of /api/leaderboard — the CSV fallback is untouched."""
-    raw = await file.read()
+    # Read incrementally and abort the moment we exceed the cap, so a massive
+    # upload can never balloon server memory before the candidate cap applies.
+    chunks = []
+    total = 0
+    while True:
+        chunk = await file.read(64 * 1024)
+        if not chunk:
+            break
+        total += len(chunk)
+        if total > SANDBOX_MAX_UPLOAD_BYTES:
+            raise HTTPException(status_code=413, detail=SANDBOX_TOO_LARGE_MESSAGE)
+        chunks.append(chunk)
+    raw = b"".join(chunks)
+
     try:
         text = raw.decode("utf-8")
     except UnicodeDecodeError:

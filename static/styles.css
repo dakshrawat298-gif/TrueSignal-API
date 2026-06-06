@@ -379,6 +379,8 @@ body {
 .dz-text { display: flex; flex-direction: column; gap: 4px; }
 .dz-title { font-family: "Space Grotesk", sans-serif; font-size: 16px; font-weight: 600; color: var(--text); }
 .dz-title code { color: var(--teal); font-family: inherit; }
+.dropzone.dz-error { border-color: var(--magenta); box-shadow: 0 0 0 1px var(--magenta), 0 18px 50px -20px rgba(255,95,219,0.5); }
+.dropzone.dz-error .dz-title { color: var(--magenta); }
 .dz-sub { font-size: 12.5px; color: var(--text-dim); }
 .btn-upload {
   margin-top: 4px;
