@@ -3,7 +3,7 @@ from pydantic import BaseModel, ValidationError
 import uvicorn
 from sanitization import process_and_sanitize_payload
 from scoring_engine import calculate_final_score
-from agent_engine import run_truesignal_evaluation
+from gemini_agent import run_truesignal_evaluation
 
 class OutboundValidationSchema(BaseModel):
     tags: list[str]
@@ -43,4 +43,4 @@ async def evaluate(request: Request):
     }
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=5000)

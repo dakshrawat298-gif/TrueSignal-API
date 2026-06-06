@@ -7,7 +7,39 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+# Uses Replit's Gemini AI Integration when available (AI_INTEGRATIONS_GEMINI_*),
+# otherwise falls back to a direct GEMINI_API_KEY for portability.
+_client = None
+
+
+def get_client() -> genai.Client:
+    global _client
+    if _client is not None:
+        return _client
+
+    integration_key = os.environ.get("AI_INTEGRATIONS_GEMINI_API_KEY")
+    integration_base_url = os.environ.get("AI_INTEGRATIONS_GEMINI_BASE_URL")
+
+    if integration_key and integration_base_url:
+        # Replit AI Integration (Gemini-compatible access, no own API key required)
+        _client = genai.Client(
+            api_key=integration_key,
+            http_options={
+                "api_version": "",
+                "base_url": integration_base_url,
+            },
+        )
+    else:
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            raise RuntimeError(
+                "No Gemini credentials configured. Connect the Replit Gemini "
+                "integration or set GEMINI_API_KEY."
+            )
+        _client = genai.Client(api_key=api_key)
+
+    return _client
+
 
 async def run_truesignal_evaluation(candidate_data: dict) -> dict:
     unstructured_activity = candidate_data.get("unstructured_activity", "")
@@ -31,7 +63,7 @@ async def run_truesignal_evaluation(candidate_data: dict) -> dict:
     max_attempts = 5
     for attempt in range(max_attempts):
         try:
-            # UPDATED: Using the latest live model instead of the deprecated 1.5
+            client = get_client()
             response = await client.aio.models.generate_content(
                 model='gemini-2.5-flash',
                 contents=user_content,
@@ -40,12 +72,12 @@ async def run_truesignal_evaluation(candidate_data: dict) -> dict:
                     response_mime_type="application/json",
                 )
             )
-            
+
             text = response.text.strip()
             text = text.replace("```json", "").replace("```", "").strip()
-            
+
             return json.loads(text)
-            
+
         except Exception as e:
             if attempt < max_attempts - 1:
                 await asyncio.sleep(10 * (attempt + 1))
