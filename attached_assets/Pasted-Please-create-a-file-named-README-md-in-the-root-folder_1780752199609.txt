@@ -1,3 +1,5 @@
+Please create a file named `README.md` in the root folder (or overwrite it if it already exists). Populate it with the EXACT markdown content provided below. Do not change the formatting, do not alter the Mermaid diagram, and do not add any conversational text to the file:
+
 # ⚡ TrueSignal
 **Adversarial HR Intelligence Engine | Hack2Skill & Redrob Submission**
 
@@ -35,4 +37,3 @@ graph TD
     G --> H{Scoring Engine}
     H -->|Zero-Tolerance Math| I[Glassmorphism Dashboard]
     I -->|Ranked Leaderboard| A
-```
