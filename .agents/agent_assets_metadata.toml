@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "2bOVk6_6xkdAJLQPnaePc"
+uri = "file://notebookllm_review_dump.txt"
+type = "text"
+title = "Project Code Review Dump"
